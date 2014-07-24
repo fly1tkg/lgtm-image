@@ -1,8 +1,7 @@
 class ApiController < ApplicationController
 
   def label
-    res = Faraday.get params[:url]
-    image = MiniMagick::Image.read(res.body)
+    image = MiniMagick::Image.open(params[:url])
     image.combine_options do |i|
       i.font 'Helvetica'
       i.gravity 'SouthEast'
